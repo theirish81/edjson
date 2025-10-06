@@ -26,6 +26,7 @@ func GenericJsonTypeConverter[T any]() []copier.TypeConverter {
 		},
 		// Converter 2: T -> JSONType[T] (Wrap)
 		{
+			SrcType: *new(T),
 			DstType: *new(datatypes.JSONType[T]),
 			Fn: func(src interface{}) (dst interface{}, err error) {
 				t := datatypes.NewJSONType(src.(T))
